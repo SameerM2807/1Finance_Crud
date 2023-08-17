@@ -1,0 +1,126 @@
+﻿@*@model _1financeMVC.AccountDto.LoginDto
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+
+  
+  @{
+   
+    @TempData["SuccessMessage2"]
+  }
+   
+    
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+
+        <script src="~/jquery-validate/jquery.validate.js"></script>
+        <script src="~/jquery-validate/jquery.validate.min.js"></script><script src="~/jquery-validate/additional-methods.js"></script>
+        <script src="~/jquery-validate/additional-methods.min.js"></script>
+        <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllProducts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+*@
+
+
+
+
+
+
+@model _1financeMVC.AccountDto.LoginDto
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <h1 class="text-center mt-4">Login</h1>
+    <hr class="mb-4" />
+    @{
+
+        @TempData["SuccessMessage2"]
+    }
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form asp-action="Login" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please provide a valid email address.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Password</label>
+                    <input asp-for="Password" class="form-control" type="password" required />
+                    <div class="invalid-feedback">
+                        Please provide a password.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a asp-action="GetAllProducts" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Disable form submission if fields are invalid
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

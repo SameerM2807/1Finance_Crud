@@ -1,0 +1,119 @@
+﻿@*@model IEnumerable<_1financeMVC.ProductDto.Product>
+
+@{
+    ViewData["Title"] = "GetAllProducts";
+}
+
+<h1>GetAllProducts</h1>
+
+<p>
+    <a asp-action="AddProduct">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new {  id=item.ProductId  }) |
+                    @Html.ActionLink("Details", "GetById", new { id=item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/jquery-validate/jquery.validate.js"></script>
+<script src="~/jquery-validate/jquery.validate.min.js"></script><script src="~/jquery-validate/additional-methods.js"></script>
+<script src="~/jquery-validate/additional-methods.min.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+*@
+
+
+
+
+
+@model IEnumerable<_1financeMVC.ProductDto.Product>
+
+@{
+    ViewData["Title"] = "GetAllProducts";
+}
+
+<div class="container">
+    <h1 class="text-center">All Products</h1>
+    @{
+        @TempData["SuccessMessage"]
+    }
+    <div class="text-center mt-3 mb-4">
+        <a asp-action="AddProduct" class="btn btn-success">Add New Product</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Category </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CatId)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="EditProduct" asp-route-id="@item.ProductId" class="btn btn-primary">Edit</a>
+                                <a asp-action="GetById" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

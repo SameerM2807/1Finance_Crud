@@ -1,0 +1,265 @@
+﻿@*@model _1financeMVC.ProductDto.Product
+@using _1financeMVC.Constants
+@{
+    ViewData["Title"] = "EditProduct";
+}
+
+<h1>EditProduct</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <input asp-for="ProductId" class="form-control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantity" class="control-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="price" class="control-label"></label>
+                <input asp-for="price" class="form-control" />
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatId" class="control-label"></label>
+                <select asp-for="CatId" class="form-control" asp-items="Html.GetEnumSelectList<Category>()">
+                    <option value="">Choose Category</option>
+                </select>
+                <span asp-validation-for="CatId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllProducts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+@model _1financeMVC.ProductDto.Product
+@using _1financeMVC.Constants
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container">
+    <h1 class="text-center mt-4">Edit Product</h1>
+    <hr class="mb-4" />
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4>Product Details</h4>
+            <hr />
+
+            <form asp-action="EditProduct" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label for="ProductId">Product ID</label>
+                    <input asp-for="ProductId" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="ProductName">Product Name</label>
+                    <input asp-for="ProductName" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please provide a product name.
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="quantity">Quantity</label>
+                        <input asp-for="quantity" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please provide a valid quantity.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="price">Price</label>
+                        <input asp-for="price" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please provide a valid price.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="CatId">Category</label>
+                    <select asp-for="CatId" class="form-control" asp-items="Html.GetEnumSelectList<Category>()" required>
+                        <option value="">Choose Category</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category.
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validate\jquery.validate.js"></script>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validate\jquery.validate.min.js"></script>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validate\additional-methods.js"></script>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validate\additional-methods.min.js"></script>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"></script>
+            <script src="c:\users\user\desktop\dgwebapi19july\1financemvc\1financemvc\wwwroot\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js"></script>
+
+            <div class="text-center mt-3">
+                <a asp-action="GetAllProducts" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Disable form submission if fields are invalid
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+
+                Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+
+            
+        })();
+    </script>
+}
+*@
+
+
+
+@model _1financeMVC.ProductDto.Product
+@using _1financeMVC.Constants
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container">
+    <h1 class="text-center mt-4">Edit Product</h1>
+    <hr class="mb-4" />
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4>Product Details</h4>
+            <hr />
+
+            <form asp-action="EditProduct" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label for="ProductId">Product ID</label>
+                    <input asp-for="ProductId" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="ProductName">Product Name</label>
+                    <input asp-for="ProductName" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please provide a product name.
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="quantity">Quantity</label>
+                        <input asp-for="quantity" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please provide a valid quantity.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="price">Price</label>
+                        <input asp-for="price" class="form-control" required pattern="[0-9]+(\.[0-9][0-9]?)?" />
+                        <div class="invalid-feedback">
+                            Please provide a valid price.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="CatId">Category</label>
+                    <select asp-for="CatId" class="form-control" asp-items="Html.GetEnumSelectList<Category>()" required>
+                        <option value="">Choose Category</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category.
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                // Disable form submission if fields are invalid
+                (function () {
+                    'use strict';
+
+                    window.addEventListener('load', function () {
+                        var forms = document.getElementsByClassName('needs-validation');
+
+                        Array.prototype.filter.call(forms, function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                        });
+                    });
+
+                    // Numeric validation for the price field
+                    $('#price').on('input', function () {
+                        this.value = this.value.replace(/[^0-9.]/g, ''); // Allow only numbers and decimal point
+                    });
+                })();
+            </script>
+
+            <div class="text-center mt-3">
+                <a asp-action="GetAllProducts" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
